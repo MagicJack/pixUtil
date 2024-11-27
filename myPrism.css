@@ -1,0 +1,129 @@
+/* Fix for Pixnet Mobile */
+.article-content-inner .tag span,
+.article-content-inner .tag {
+    background:revert;
+    padding:revert;
+    margin:revert;
+    border-radius:revert;
+    font-size:revert;
+}
+.article-content-inner .comment {
+    font-family: revert;
+    font-size:revert;
+    padding:revert;
+    border:revert;
+    letter-spacing: revert;
+}
+.article-content-inner span { white-space:unset!important }
+
+/* Adjustment for Prism line-number */
+.article-content-inner {
+    --ln-width:2.5em;
+    --ln-rPad:0.5em;
+}
+pre[class*=language-] {
+    margin:0!important;
+    padding:0.25em!important;
+}
+
+/* From Prism line-number with patches */
+pre[class*=language-].line-numbers {
+    position: relative;
+    padding-left:calc(var(--ln-width) + var(--ln-rPad))!important;
+    counter-reset: linenumber
+}
+
+pre[class*=language-].line-numbers>code {
+    position: relative;
+    white-space: inherit
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: -2px;
+    font-size: 100%;
+    left: calc(0px - var(--ln-rPad) - var(--ln-width));
+    width: var(--ln-width)!important;
+    letter-spacing: -1px;
+    border-right: 2px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.line-numbers-rows>span {
+    display: block;
+    counter-increment: linenumber
+}
+
+.line-numbers-rows>span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: var(--ln-rPad);
+    text-align: right
+}
+
+/* Adjustment for Prism Copy button */
+div.code-toolbar {
+    position:relative;
+    overflow:hidden;
+    transform: translateZ(0)
+}
+div.code-toolbar>.toolbar {
+  --hljs-theme-color: white;
+  --hljs-theme-background: black;
+  --hljs-theme-padding: 3.6px;
+  position:absolute;
+  top:0.25em;
+  right:0.25em;
+  transition:transform 200ms ease-out;
+}
+
+div.code-toolbar .toolbar-item>button {
+  position: relative;
+  margin: calc(var(--hljs-theme-padding) / 2);
+  width: calc(16px + var(--hljs-theme-padding));
+  height: calc(16px + var(--hljs-theme-padding));
+  font-size: .8125rem;
+  text-indent: -9999px;
+  color: var(--hljs-theme-color);
+  border-radius: .25rem;
+  border: 1px solid;
+  border-color: color-mix(in srgb,var(--hljs-theme-color),transparent 80%);
+  background-color: var(--hljs-theme-background);
+  transition: background-color 200ms ease;
+  overflow: hidden
+}
+
+div.code-toolbar .toolbar-item>button[data-copy-state="copy"]::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    background-color: currentColor;
+    mask: url('data:image/svg+xml;utf-8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6 5C5.73478 5 5.48043 5.10536 5.29289 5.29289C5.10536 5.48043 5 5.73478 5 6V20C5 20.2652 5.10536 20.5196 5.29289 20.7071C5.48043 20.8946 5.73478 21 6 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V6C19 5.73478 18.8946 5.48043 18.7071 5.29289C18.5196 5.10536 18.2652 5 18 5H16C15.4477 5 15 4.55228 15 4C15 3.44772 15.4477 3 16 3H18C18.7956 3 19.5587 3.31607 20.1213 3.87868C20.6839 4.44129 21 5.20435 21 6V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H6C5.20435 23 4.44129 22.6839 3.87868 22.1213C3.31607 21.5587 3 20.7957 3 20V6C3 5.20435 3.31607 4.44129 3.87868 3.87868C4.44129 3.31607 5.20435 3 6 3H8C8.55228 3 9 3.44772 9 4C9 4.55228 8.55228 5 8 5H6Z" fill="black"/><path fill-rule="evenodd" clip-rule="evenodd" d="M7 3C7 1.89543 7.89543 1 9 1H15C16.1046 1 17 1.89543 17 3V5C17 6.10457 16.1046 7 15 7H9C7.89543 7 7 6.10457 7 5V3ZM15 3H9V5H15V3Z" fill="black"/></svg>');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center center
+}
+
+.toolbar {
+    transform: translateX(calc(100% + 1.125em))
+}
+div.code-toolbar:focus-within .toolbar {
+    transition: none;
+    transform: translateX(0)
+}
+div.code-toolbar:hover .toolbar {
+    transform: translateX(0)
+}
+.toolbar-item>button:not([data-copy-state="copy"]) {
+    text-indent: 0!important;
+    width: auto!important;
+}
