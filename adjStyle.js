@@ -6,6 +6,8 @@ var tmoid=null, multi = 0;
 			.forEach(ifm => { ifm.remove(); done++ });
 		document.querySelectorAll('ins.adsbygoogle, ins.adsbyfalcon, #MediaCrazy-AD2, #ats-insert_video-0-wrapper')
 			.forEach(ifm => { ifm.remove(); done++ });
+		document.querySelectorAll('script[src^="//falcon-asset.pixfs.net/js"]')
+			.forEach(ifm => { ifm.remove(); done++ });
 		console.log(`Middle ${multi} Done count: ${done}`)
 	}
 
