@@ -13,8 +13,8 @@
 * **myLegend.css**: CSS 用於如下的 HTML 片段.
   ```html
   <div class='fieldset'>
-  <h3 class='legend'>有框框的區段標題</h3>
-  <p>類似 &lt;fieldset> + &lt;legend> 的排版風格
+  <h3 class='legend'>位於在區段框框上標題</h3>
+  <p>類似 <fieldset> + <legend> 的排版風格</p>
   </div>
   ```
 * **myPrism.css**: CSS 用於微調 prism.js (另一套程式區段**著色**用的 JS) 的 prism-line-number 及 copy-to-clipboard 等二個插件的外觀.
