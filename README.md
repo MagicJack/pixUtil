@@ -3,6 +3,16 @@
 
 由於 pixnet blog 將**桌面版**及**行動版**分開維護, 而且行動版無法客製 CSS, 因此這個 repo 裡的 CSS/JS 主要都是針行動版.
 
+想要在自己的 pixnet blog 引用這些功能的朋友可以直接透過 jsdelivr.net 抓取檔案:
+
+```html
+<!-- 引用 JS 檔 -->
+<script src="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/xxxx.js"></script>
+
+<!-- 引用 CSS 檔 -->
+<link href="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/yyyy.css" rel="stylesheet" />
+```
+
 ## 檔案用途及使用說明
 ### adjStyle.js
 
@@ -21,8 +31,9 @@
 
 這個是 adjStyle.js 的簡化版, 用來摭蓋 pixnet blog 行動版的廣告. 歡迎大家引用.
 
-將下一行 HTML 貼在你的 pixnet blog 文章的最後一行. 即可
+將以下二行 HTML 貼在你的 pixnet blog 文章的最後一行. 即可
 ```html
+<p id="CSS_NO_AD"></p>
 <script src="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/JS_CSS_NO_AD.js"></script>
 ```
 
