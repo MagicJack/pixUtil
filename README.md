@@ -1,44 +1,43 @@
 # pixUtil
-這一個 repo 裡面是我在自己的**痞客邦**部落格 (pixnet blog) 裡使用的貼文 CSS 及外掛 JS.
+這個 repo 裡放的都是我在自己的**痞客邦**部落格 (pixnet blog) 裡使用的 CSS 及外掛 JS.
 
-## 檔案用途說明
-* **adjStyle.js**: 這個 JS 包含了我自己對 pixnet blog 行動版的修正:
+由於 pixnet blog 將**桌面版**及**行動版**分開維護, 而且行動版無法客製 CSS, 因此這個 repo 裡的 CSS/JS 主要都是針行動版.
+
+## 檔案用途及使用說明
+### adjStyle.js
+
+這個 JS 包含了我自己對 pixnet blog 行動版的修正:
   * 我自己的 pixnet blog 行動版的 CSS
   * 調整 pixnet blog 行動版的 CSS (沖突/錯誤的部份)
   * 摭蓋行動版的廣告
   * 試作**移除**行動版的廣告
-* **JS_CSS_NO_AD.js**: 這個是簡易版, 用來摭蓋 pixnet blog 行動版的廣告.
-* **mergeHTML.js**: highlight.js v11 用的插件 plugin. 可以在要著色的程式區塊裡繼續使用 HTML tag (如: &lt;i>, &lt;b>, &span class='...'>).
-* **myKbd.css**: CSS 用於 HTML tag &lt;kbd>.
-* **myLegend.css**: CSS 用於如下的 HTML 片段.
-  ```html
-  <div class='fieldset'>
-  <h3 class='legend'>位於在區段框框上標題</h3>
-  <p>類似 <fieldset> + <legend> 的排版風格</p>
-  </div>
-  ```
-* **myPrism.css**: CSS 用於微調 prism.js (另一套程式區段**著色**用的 JS) 的 prism-line-number 及 copy-to-clipboard 等二個插件的外觀.
-* **其他**: 實驗/測試 用的 CSS/JS.
 
-## 如何使用
+這個 JS 不建議大家引用, 除非你想要複製我的 blog 風格. 即使如此, 我還是在此分享引用的方法:
+```html
+<script src="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/adjStyle.js"></script>
+```
 
-### `JS_CSS_NO_AD.js`
+### JS_CSS_NO_AD.js
+
+這個是 adjStyle.js 的簡化版, 用來摭蓋 pixnet blog 行動版的廣告. 歡迎大家引用.
 
 將下一行 HTML 貼在你的 pixnet blog 文章的最後一行. 即可
 ```html
 <script src="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/JS_CSS_NO_AD.js"></script>
 ```
 
-### `mergeHTML.js`
+### mergeHTML.js
+
+這個是 highlight.js v11 用的插件 plugin. 功能是可以在要著色的程式區塊裡繼續使用 HTML tag (如: &lt;i>, &lt;b>, &lt;span class='...'>).
 
 在 blog 貼文的後面貼上如下的 HTML 及 JS 片段.
 ```html
 <!-- load your favor theme of hljs -->
-<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/an-old-hope.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/an-old-hope.min.css" rel="stylesheet" />
 
-<!-- load hljs 及 plugin mergeHTML.js -->
-<script src="//cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/mergeHTML.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+<!-- load hljs and it's plugin mergeHTML.js -->
+<script src="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/mergeHTML.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
 
 <script>
 if (typeof(hljs) !== 'undefined') {
@@ -52,9 +51,36 @@ if (typeof(hljs) !== 'undefined') {
 </script>
 ```
 
-### `myPrism.css`
+### myKbd.css
 
-使用時不要載入 prism-line-number 及 copy-to-clipboard 這二個插件對應的 CSS.
+用於 HTML tag &lt;kbd> 的 CSS 檔.
+
+```html
+<link href="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/myKbd.css" rel="stylesheet" />
+```
+
+### myLegend.css
+
+CSS 用於如下的 HTML 片段.
+  ```html
+  <div class='fieldset'>
+  <h3 class='legend'>位於在區段框框上標題</h3>
+  <p>類似 <fieldset> + <legend> 的排版風格</p>
+  </div>
+  ```
+使用方法:
+
+```html
+<link href="https://cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/myLegend.css" rel="stylesheet" />
+```
+
+### myPrism.css
+
+CSS 用於微調 prism.js 的二個插件 (prism-line-number 和 copy-to-clipboard) 的外觀.
+
+prism.js 的功能和 highlight.js 一樣都是給程式區段**著色**用的 JS.
+
+使用時不要載入 prism-line-number 及 prism-toolbar (copy-to-clipboard 的相依插件) 這二個插件對應的 CSS.
 
 ```html
 <link  href="//cdn.jsdelivr.net/gh/MagicJack/pixUtil@latest/myPrism.css" rel="stylesheet" />
@@ -73,3 +99,7 @@ if (typeof(hljs) !== 'undefined') {
 <script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 ```
+
+### 其他檔案
+
+實驗/測試 用的 CSS/JS.
