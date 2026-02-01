@@ -225,10 +225,43 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 		 '#onead-layout0,' +				// 蓋版影音廣告
 		 'vmfive-ad-unit,' +				// 蓋版影音廣告 (回上頁)
 		 '#avividai_you_like_container,' +	// 蓋版廣告 (回上頁)
+		 '#pixnet-ad-before_header,'+
+		 '.pix-anchor-slot,'+
+		 '#pixnet_pc_article_inread_1,'+
+		 '#pixnet_pc_article_inread_2,'+
+		 '#pixnet_pc_article_inread_3,'+
+		 '#pixnet_pc_article_inread_4,'+
+		 '#pixnet_pc_article_inread_5,'+
+		 '#pixnet_pc_article_inread_6,'+
+		 '#pixnet_pc_article_inread_7,'+
+		 '#pixnet_pc_article_inread_8,'+
+		 '#pixnet_pc_article_inread_9,'+
+		 '#pixnet_pc_article_inread_10,'+
+		 '#pixnet_pc_article_bottom_1,'+
+		 '#pixnet-ad-content-left-right-wrapper,'+
 		 'div[id^="appier_preview"],'+
 		 'div[id^="vmfive-ad-practical"],'+
 		 '.adsbygoogle', css:'display:none!important; height:0!important'},
 	{sel:'.article-author', css:'margin-top:50px; padding-top:12px'}
+	];
+	var adRules = [
+		 '#pixnet-ad-before_header',
+		 '.pix-anchor-slot',
+		 '#pixnet_pc_article_inread_1',
+		 '#pixnet_pc_article_inread_2',
+		 '#pixnet_pc_article_inread_3',
+		 '#pixnet_pc_article_inread_4',
+		 '#pixnet_pc_article_inread_5',
+		 '#pixnet_pc_article_inread_6',
+		 '#pixnet_pc_article_inread_7',
+		 '#pixnet_pc_article_inread_8',
+		 '#pixnet_pc_article_inread_9',
+		 '#pixnet_pc_article_inread_10',
+		 '#pixnet_pc_article_bottom_1',
+		 '#pixnet-ad-content-left-right-wrapper'+
+		 'div[id^="appier_preview"]',
+		 'div[id^="vmfive-ad-practical"]',
+		 '.adsbygoogle'
 	];
 
 	function myAppendCss(rules, sht) {
@@ -248,9 +281,11 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 	if (cRules.length && cRules.length > 0) {
 		myReplaceCss(cRules);
 		myAppendCss(xRules, cRules[0].sheet);
-		let elm = document.querySelectorAll("ins.adsbygoogle")
-		elm.forEach( (elm, idx, ary) => {
-			elm.style.display = 'none'
+		adRules.forEach( (adRule, idx, ary) => {
+			let elm = document.querySelectorAll(adRule)
+			elm.forEach( (elm, idx, ary) => {
+				elm.style.display = 'none'
+			})
 		})
 	}
 

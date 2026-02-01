@@ -20,6 +20,29 @@ document.getElementById("CSS_NO_AD").outerHTML=[
 ,'#onead-layout0,'                // 蓋版影音廣告
 ,'vmfive-ad-unit,'                // 蓋版影音廣告 (後段)
 ,'#avividai_you_like_container,'  // 蓋版廣告 (後段)
+,'#pixnet-ad-before_header,'
+,'.pix-anchor-slot,'
+,'#pixnet_pc_article_inread_1,'
+,'#pixnet_pc_article_inread_2,'
+,'#pixnet_pc_article_inread_3,'
+,'#pixnet_pc_article_inread_4,'
+,'#pixnet_pc_article_inread_5,'
+,'#pixnet_pc_article_inread_6,'
+,'#pixnet_pc_article_inread_7,'
+,'#pixnet_pc_article_inread_8,'
+,'#pixnet_pc_article_bottom_1,'
+,'#pixnet-ad-content-left-right-wrapper,'
 ,'.adsbygoogle { display:none!important; height:0!important; }'
 ,'.article-author {margin-top:50px; padding-top:12px }'
 ,'</style>'].join('');
+
+var adRules = [
+ '#pixnet_pc_article_bottom_1',
+ '#pixnet-ad-content-left-right-wrapper'
+];
+adRules.forEach( (adRule, idx, ary) => {
+	let elm = document.querySelectorAll(adRule)
+		elm.forEach( (elm, idx, ary) => {
+		elm.style.display = 'none'
+	})
+})
