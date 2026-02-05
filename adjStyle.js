@@ -1,4 +1,4 @@
-var tmoid=null, multi = 0;
+var tmoid=null, multi = 10;
 ! function doStuff() {
 	let done = 0;
 	function doRemove() {
@@ -15,20 +15,21 @@ var tmoid=null, multi = 0;
 	if (done != 0) {
 		tmoid = setTimeout(doStuff, 500);
 		mulit = 0;
-	} else if (multi < 30) {
-		multi++;
+	} else if (multi > 0) {
+		multi--;
 		tmoid = setTimeout(doStuff, 100);
 	} else {
 		done = 0;
 		tmoid && clearTimeout(tmoid);
 		let sTxt=[
-			'#recommend-topic',
-			'.pix-nerd-article',
-			'[class^="avividai_you_like"]',
-			'[class^="AD2M-Crazy"]',
-			'vmfive-ad-box'
+			 '#pixnet_pc_article_bottom_1',
+			 '#pixnet-ad-content-left-right-wrapper'
 		].join(', ')
-		document.querySelectorAll(sTxt).forEach(t => { t.remove(); done++});
+		document.querySelectorAll(sTxt).forEach( (elm, idx, ary) => {
+			elm.style.display = ''
+			elm.setAttribute('style', 'display: none !important;')
+			done++
+		})
 		console.log('Last Done count:'+done)
 	}
 }();
@@ -204,30 +205,9 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 	// Load Font Ubuntu Mono
 	{sel:'@font-face', css:'font-family: "Ubuntu Mono"; src: url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");'},
 
-	{sel:'.adsbyfalcon.pixnet-ad,' +		// 頁首廣告
-		 '#trialsquad-post,' +				// 主文標題下方的橘紅色廣告
-		 '#main .header-fixed-area,' +		// 文章前頭影音區
-		 '.trv-player-container,' +			// 廣告影片輪播
-		 'div[id^="div-gpt-ad"],' +			// 內文廣告
-		 '.tag-container.global-keyword,' +	// 全站熱搜
-		 'div[class^="article-footer article-ad"],' +
-		 '.in-read-ad.product-recommend,' +	// 推薦熱銷商品
-		 '#recommend-topic,' +				// 你可能感興趣的話題
-		 '.pix-nerd-article,' +				// 乎你看更多 手機版
-		 '.web_to_app__container,' +		// 文章末尾廣告
-		 'div[id^="dablewidget_"],' +		// 你可能有興趣的文章 dable
-		 '.anchor-ad-container.anchor-ad-container__show,' +
-		 '.pix-related-post-2023,' +		// 大家都在看
-		 '#article-hot-wrapper,' +			// 兒少不宜
-		 '.discover-stream,' +				// 兒少不宜
-		 '.AD2M-CrazyWrap,' +				// 蓋版影音廣告
-		 '.AD2M-CrazyClose,' +				//   上項的關閉按鈕
-		 '#onead-layout0,' +				// 蓋版影音廣告
-		 'vmfive-ad-unit,' +				// 蓋版影音廣告 (回上頁)
-		 '#avividai_you_like_container,' +	// 蓋版廣告 (回上頁)
-		 '#pixnet-ad-before_header,'+
+	{sel:'#pixnet-ad-before_header,'+		// 頁首廣告
 		 '.pix-anchor-slot,'+
-		 '#pixnet_pc_article_inread_1,'+
+		 '#pixnet_pc_article_inread_1,'+	// 內文廣告
 		 '#pixnet_pc_article_inread_2,'+
 		 '#pixnet_pc_article_inread_3,'+
 		 '#pixnet_pc_article_inread_4,'+
@@ -237,31 +217,10 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 		 '#pixnet_pc_article_inread_8,'+
 		 '#pixnet_pc_article_inread_9,'+
 		 '#pixnet_pc_article_inread_10,'+
-		 '#pixnet_pc_article_bottom_1,'+
-		 '#pixnet-ad-content-left-right-wrapper,'+
-		 'div[id^="appier_preview"],'+
-		 'div[id^="vmfive-ad-practical"],'+
+		 '#pixnet_pc_article_bottom_1,'+	// 文章末尾廣告
+		 '#pixnet-ad-content-left-right-wrapper,'+	// 文章末尾廣告
 		 '.adsbygoogle', css:'display:none!important; height:0!important'},
 	{sel:'.article-author', css:'margin-top:50px; padding-top:12px'}
-	];
-	var adRules = [
-		 '#pixnet-ad-before_header',
-		 '.pix-anchor-slot',
-		 '#pixnet_pc_article_inread_1',
-		 '#pixnet_pc_article_inread_2',
-		 '#pixnet_pc_article_inread_3',
-		 '#pixnet_pc_article_inread_4',
-		 '#pixnet_pc_article_inread_5',
-		 '#pixnet_pc_article_inread_6',
-		 '#pixnet_pc_article_inread_7',
-		 '#pixnet_pc_article_inread_8',
-		 '#pixnet_pc_article_inread_9',
-		 '#pixnet_pc_article_inread_10',
-		 '#pixnet_pc_article_bottom_1',
-		 '#pixnet-ad-content-left-right-wrapper'+
-		 'div[id^="appier_preview"]',
-		 'div[id^="vmfive-ad-practical"]',
-		 '.adsbygoogle'
 	];
 
 	function myAppendCss(rules, sht) {
@@ -281,14 +240,7 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 	if (cRules.length && cRules.length > 0) {
 		myReplaceCss(cRules);
 		myAppendCss(xRules, cRules[0].sheet);
-		adRules.forEach( (adRule, idx, ary) => {
-			let elm = document.querySelectorAll(adRule)
-			elm.forEach( (elm, idx, ary) => {
-				elm.style.display = 'none'
-			})
-		})
 	}
-
 }("", [
 	{sel:"\\.article-content-inner \\* \*", prop:"font-size", txt2rm:"!important" }
 //	{sel:"\\.article\\-body p\\:not\\(\\[class\\]\\)", prop:"\.*", txt2rm:"\.*" }
