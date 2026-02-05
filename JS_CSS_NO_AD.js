@@ -43,6 +43,8 @@ var adRules = [
 adRules.forEach( (adRule, idx, ary) => {
 	let elm = document.querySelectorAll(adRule)
 		elm.forEach( (elm, idx, ary) => {
-		elm.style.display = 'none'
+			elm.style.display = 'none'
+			elm.style.setProperty('display', 'none', 'important')
+			elm.setAttribute('style', 'display: none !important;');
 	})
 })

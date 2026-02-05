@@ -22,11 +22,13 @@ var tmoid=null, multi = 0;
 		done = 0;
 		tmoid && clearTimeout(tmoid);
 		let sTxt=[
-			'#recommend-topic',
+			 '#pixnet_pc_article_bottom_1'
+/*			'#recommend-topic',
 			'.pix-nerd-article',
 			'[class^="avividai_you_like"]',
 			'[class^="AD2M-Crazy"]',
 			'vmfive-ad-box'
+*/
 		].join(', ')
 		document.querySelectorAll(sTxt).forEach(t => { t.remove(); done++});
 		console.log('Last Done count:'+done)
@@ -258,10 +260,7 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 		 '#pixnet_pc_article_inread_9',
 		 '#pixnet_pc_article_inread_10',
 		 '#pixnet_pc_article_bottom_1',
-		 '#pixnet-ad-content-left-right-wrapper'+
-		 'div[id^="appier_preview"]',
-		 'div[id^="vmfive-ad-practical"]',
-		 '.adsbygoogle'
+		 '#pixnet-ad-content-left-right-wrapper'
 	];
 
 	function myAppendCss(rules, sht) {
@@ -285,6 +284,8 @@ input[type=checkbox]:checked + .img_tag[class*=right]`, css:'position: relative;
 			let elm = document.querySelectorAll(adRule)
 			elm.forEach( (elm, idx, ary) => {
 				elm.style.display = 'none'
+				elm.style.setProperty('display', 'none', 'important')
+				elm.setAttribute('style', 'display: none !important;');
 			})
 		})
 	}
