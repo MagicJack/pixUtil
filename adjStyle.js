@@ -14,7 +14,7 @@ var tmoid=null, multi = 10;
 	doRemove()
 	if (done != 0) {
 		tmoid = setTimeout(doStuff, 500);
-		mulit = 0;
+		multi = 10;
 	} else if (multi > 0) {
 		multi--;
 		tmoid = setTimeout(doStuff, 100);
