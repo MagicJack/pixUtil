@@ -29,7 +29,7 @@
 
 ### JS_CSS_NO_AD.js
 
-這個是 adjStyle.js 的簡化版, 用來摭蓋 pixnet blog 行動版的廣告. 歡迎大家引用.
+這個是 adjStyle.js 的簡化版, 原先是用來摭蓋 pixnet blog 行動版的廣告, 現在新版 pixnet 的桌機版本也可以用. 歡迎大家引用.
 
 將以下二行 HTML 貼在你的 pixnet blog 文章的最後一行. 即可
 ```html
