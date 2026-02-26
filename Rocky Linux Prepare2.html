@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Rocky Linux Preparation</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0 minimum-scale=0.25 maximum-scale=3.0 user-scalable=yes' />
+	<meta charset="utf-8" />
+<style>
+* { box-sizing:border-box }
+body { font: 1.2rem 黑體, Arial, Helvetica, sans-serif; margin:1em; counter-reset: fig_cnt step_cnt }
+h1 { text-align:center; margin-bottom: 0px; }
+h2 { text-align:center; margin-top: 0px; }
+h3 { margin-top: 3em; margin-bottom: 0; }
+hr { margin-top:0; margin-bottom: 1em; }
+li p { margin: 0.25em 0; }
+ol, ul { padding-left: 1.25em; }
+var { font: bold 1.2rem 'Courier New', Courier, monospace; }
+kbd { border: solid 2px gray; border-radius: 5px; padding: 3px; background-color: #eee; padding:2px 0.8em; white-space: nowrap; }
+.note { text-indent: -3.5em; padding-left: 3.5em; }
+.red { color: red; }
+.blue { color: blue; }
+/* 圖片及其說明 */
+.svg_cntr { width:50%; margin:auto; }
+.svg_tag { width:80%; display:block; margin:auto; }
+.svg_desc { text-align: center; margin-top: 0px; margin-bottom: 1em; }
+.svg_desc::before { counter-increment: fig_cnt; content: "圖 " counter(fig_cnt) ". " }
+/* 印刷及換頁控制 */
+.ff { page-break-before: always; }
+@media print {
+	body {
+		font-size: 12pt;
+		color: black;
+		background-color: white;
+	}
+}
+</style>
+</head>
+<body>
+	<h1>Rocky Linux 安裝手冊 預備篇</h1>
+	<h2>-- 以 Rocky Linux 9.7 為例 --</h2>
+	<p>Rocky Linux 有多種安裝方法, 比較簡單快速的是事前先備好 Rocky Linux 的安裝光碟. 由於科技的演進, 現在也可以將 DVD 碟片轉換為<b>可開機 USB 隨身碟</b>, 再以它來安裝.</p>
+	<ol><li><p>下載 Rocky Linux 9.7 DVD 映像檔.</p></li>
+		<li><p>安裝 Rocky Linux 9.7</p></li>
+		<ul><li><p>使用 DVD 光碟: 直接燒錄 DVD 光碟.</p></li>
+			<li><p>使用可開機 USB 隨身碟: 以免費軟體 Rufus, 將 DVD 映像檔製作成可開機 USB 隨身碟.</p></li>
+		</ul></li>
+	</ol>
+<h3>下載 Rocky Linux 9.7 DVD 映像檔說明如下:</h3>
+<hr>
+<ol style="list-style-type: upper-alpha;">
+  <li><p>下載 Rocky Linux 9.7 DVD 映像檔.</p>
+  <ul><li><p>開啟 browser 直接連至 Rocky Linux 官網的下載頁面 <var>https://rockylinux.org/zh-TW/download</var>.</p></li>
+    <li><p>或者在 browser 在搜尋欄中輸入 Rocky Linux.</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2342 1668" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702798514793250.png" x="0" y="0" width="100%"></image>
+      <g transform='translate(400, 290)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H175 L180,65 V5 L175,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H175 L180,65 V5 L175,0 H5 Z" />
+      </g>
+      <g transform='translate(100, 610)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H125 L130,65 V5 L125,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H125 L130,65 V5 L125,0 H5 Z" />
+      </g>
+    </svg>
+    <p class="svg_desc">Google Search 顯示的搜尋結果.</p>
+    <p>請點擊 Rocky Linux 網站下方的 "<b>下載</b>".</p>
+    </li>
+  </ul></li>
+  <li><p>選擇下載 "Rocky Linux 9"</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2342 1668" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702807838731016.png" x="0" y="0" width="100%"></image>
+    </svg>
+    <p class="svg_desc">Rocky Linux 的中文下載頁面.</p>
+    <p><b>預設影像</b>的上方欄中選擇 <kbd>AMD/Intel (x86_64)</kbd> 按鈕, 並於<b>選擇版本:</b>下方欄中選擇 <kbd>Rocky Linyx 9</kbd> 按鈕. 結果如下圖:</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2342 1668" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702811508748248.png" x="0" y="0" width="100%"></image>
+      <g transform='translate(436, 286)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H310 L315,65 V5 L310,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H310 L315,65 V5 L310,0 H5 Z" />
+      </g>
+      <g transform='translate(360, 645)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H250 L255,65 V5 L250,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H250 L255,65 V5 L250,0 H5 Z" />
+      </g>
+      <g transform='translate(540, 838)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H200 L205,65 V5 L200,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H200 L205,65 V5 L200,0 H5 Z" />
+      </g>
+    </svg>
+    <p class="svg_desc">Rocky Linux 9.7 下載畫面.</p>
+    <p>點選 <kbd>DVD ISO</kbd> 按鈕開始下載. (由於我們後續的安裝是選用最小安裝, 所以下載 <kbd>Minimal ISO</kbd> 也可以)</p>
+    <p class="note">附註一: 目前 Rocky Linux 9 最新的版本為 9.7 版, 下載其他的舊版本可以直接連接至 "<var><a href="https://download.rockylinux.org/pub/rocky/9/isos/x86_64/">https://download.rockylinux.org/pub/rocky/9/isos/x86_64/</a></var>" 選擇想要下載的映像檔.</p>
+    <p class="note">附註二: 日後 Rocky Linux 9.7 再升版後, 想要再下載 9.7 版也可以直接連接至 "<var><a href="https://dl.rockylinux.org/vault/rocky/9.7/isos/x86_64/">https://dl.rockylinux.org/vault/rocky/9.7/isos/x86_64/</a></var>" 下載.<br/>(目前此連結是無效的)</p>
+  </li>
+  <li><p>下載後的檔案即可用於 DVD 光碟片之燒錄 (Minimal ISO) 或用於製作可開機 USB (DVD ISO, Minimal ISO).</p></li>
+</ol>
+<h3>下載 Rufus 說明如下:</h3>
+<hr>
+<p>Rufus 是免費軟體 (參見 Github 上的 Rufus FAQ:<a target="github_rufus" href="https://github.com/pbatard/rufus/wiki/FAQ#user-content-Why_dont_you_sell_Rufus">Why don't you sell Rufys?</a>). 執行檔目前只有 Windows 版本, 也沒有語系之分 (即單一版本).</p>
+<ol style="list-style-type: upper-alpha;">
+  <li><p>在 browser 在搜尋欄中輸入 "rufus 下載".</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2316 1357" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702813509428278.png" x="0" y="0" width="100%"></image>
+      <g transform='translate(80, 610)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H705 L710,65 V5 L705,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H705 L710,65 V5 L705,0 H5 Z" />
+      </g>
+    </svg>
+    <p class="svg_desc">Google Search 顯示的搜尋結果.</p>
+    <p>請點擊第一個搜尋結果: Rufux 網站, 進入 Rufus 中文首頁.</p>
+  </li>
+  <li><p>進入 Rufus 中文首頁</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2316 1357" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702815627553544.png" x="0" y="0" width="100%"></image>
+      <g transform='translate(80, 900)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V445 L5,450 H1555 L1560,445 V5 L1555,0 H5 Z" />
+        <path stroke='pink'  fill='none' stroke-width='7' d="M 0,5 V445 L5,450 H1555 L1560,445 V5 L1555,0 H5 Z" />
+      </g>
+      <g transform='translate(510, 925)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V65 L5,70 H155 L160,65 V5 L155,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V65 L5,70 H155 L160,65 V5 L155,0 H5 Z" />
+      </g>
+    </svg>
+    <p class="svg_desc">Rufus 中文首頁.</p>
+    <p>請向下捲動到 "下載" 段落, 或者點擊選單列上的 "下載".</p>
+  </li>
+  <li><p>下載 Rufus</p>
+    <svg class="svg_tag" version="1.2" viewBox="0 0 2316 1357" style="width:80%">
+      <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702820136430503.png" x="0" y="0" width="100%"></image>
+      <g transform='translate(200, 500)'>
+        <path stroke='white' fill='none' stroke-width='9' d="M 0,5 V125 L5,130 H1295 L1300,125 V5 L1295,0 H5 Z" />
+        <path stroke='red'   fill='none' stroke-width='7' d="M 0,5 V125 L5,130 H1295 L1300,125 V5 L1295,0 H5 Z" />
+      </g>
+    </svg>
+    <p class="svg_desc">Rufus 中文下載段落.</p>
+    <p>選擇下載 "標準版" 或 "可攜版" 均可.</p>
+  </li>
+</ol>
+
+<h3 class="ff">使用 Rufus 製作可開機 USB 說明如下:</h3>
+<hr>
+<p class="note"><span class="blue">請注意</span>: 舊 PC 的 BIOS 可能不支援高速 USB Flash. 如果在舊 PC 上無法使用該 USB Flash 安裝作業系統時, 請改用舊款 USB Flash (一般容量在 16GB 以下) 重新製作.</p>
+<p>Rufus 預設會使用目前 Windows 的語系, 要更動使用的語系可以進入後更改語系設定.</p>
+<ol style="list-style-type: upper-alpha;">
+  <li><p>首次執行 Rufus, 會詢問 "是否啟用自動線上檢查更新". 可依需求開啟或關閉.</p>
+    <div class="svg_cntr" style="width: 40%;">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 661 243" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702759537126692.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">詢問 "是否啟用檢查更新" 的對話框.</p>
+    </div>
+  </li>
+  <li><p>選擇要使用的 USB Flash.</p>
+    <div style="display:flex">
+    <div class="svg_cntr">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 593 811" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702767619550581.png" x="0" y="0" width="100%"></image>
+        <g transform='translate(16, 136)'>
+          <path stroke='white' fill='none' stroke-width='5' d="M 0,5 V35 L5,40 H555 L560,35 V5 L555,0 H5 Z" />
+          <path stroke='red'   fill='none' stroke-width='3' d="M 0,5 V35 L5,40 H555 L560,35 V5 L555,0 H5 Z" />
+          <text x="500" y="28" font-size="28" fill="red">1.</text>
+        </g>
+        <g transform='translate(452, 204)'>
+          <path stroke='white' fill='none' stroke-width='5' d="M 0,5 V35 L5,40 H120 L125,35 V5 L120,0 H5 Z" />
+          <path stroke='red'   fill='none' stroke-width='3' d="M 0,5 V35 L5,40 H120 L125,35 V5 L120,0 H5 Z" />
+          <text x="14" y="28" font-size="28" fill="red">2.</text>
+        </g>
+      </svg>
+      <p class="svg_desc">已插入 USB Flash 時的畫面.</p>
+    </div>
+    <div class="svg_cntr">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 593 811" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702763278442854.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">未插入 USB Flash 時的畫面.</p>
+    </div>
+    </div>
+    <p>PC 上插入多個 USB Flash 可以選擇使用哪一個 USB Flash.</p>
+    <p class="note">附註三: Rocky Linux 9.7 版的 Minimal ISO 大小約 2.4GB, 故可以使用 4GB 之 USB Flash 即可. 但 DVD ISO 大小約為 13GB, 故請使用容量至少為 16GB 之 USB Flash (≥16GB).</p>
+  </li>
+  <li><p>載入 Rocky Linux DVD 映像檔.</p>
+    <p>按下 <kbd>選擇</kbd> 按鈕 (前圖中標示 2 之按鈕), 並選擇先前下載之 Rocky Linux 映像檔.</p>
+    <div class="svg_cntr">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 593 879" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702772375888467.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">載入 Rocky Linux DVD 映像檔後之畫面.</p>
+  </li>
+  <li><p>選擇寫入模式.</p>
+    <p>載入之後即可按下 <kbd>執行</kbd> 按鈕, 進行正式執行前之檢查. 即<b class="red">預備</b>開始執行 Rocky Linux 開機 USB Flash 之製作.</p>
+    <div class="svg_cntr" style="width:67%">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 783 879" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702777711044391.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">寫入模式之畫面.</p>
+    </div>
+    <p>選擇預設 (建議) 之 ISO 映像模式寫入.</p>
+  </li>
+  <li><p>補載入 Grub 2.06.</p>
+    <p>如畫面之說明: 此 PC 之 Rufus 未備有 Grub 2.06 需補下載.</p>
+    <div class="svg_cntr" style="width:58%">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 661 879" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702782257668343.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">補載入 Grub 2.06 之畫面.</p>
+    </div>
+    <p>此處需按 <kbd>是</kbd> 進行下載.</p>
+  </li>
+  <li><p>補載入 Syslinux 6.04.</p>
+    <p>如畫面之說明: 此 PC 之 Rufus 未備有 Syslinux 6.04 需補下載.</p>
+    <div class="svg_cntr" style="width:58%">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 661 879" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702786191926158.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">補載入 Syslinux 6.04 之畫面.</p>
+    </div>
+    <p>此處需按 <kbd>是</kbd> 進行下載.</p>
+  </li>
+  <li><p>最後告警.</p>
+    <div class="svg_cntr" style="width:58%">
+      <svg class="svg_tag" version="1.2" viewBox="0 0 661 879" style="width:80%">
+        <image href="https://pimg.1px.tw/blog/magicjackting/post/867702524261838468/867702788670760212.png" x="0" y="0" width="100%"></image>
+      </svg>
+      <p class="svg_desc">開始執行寫入之告警畫面.</p>
+    </div>
+    <p>按 <kbd>OK</kbd> 按鈕開始執行.</p>
+  </li>
+</ol>
+</body>
+</html>
