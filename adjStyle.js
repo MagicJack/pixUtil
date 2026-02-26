@@ -2,18 +2,19 @@ var tmoid=null, multi = 10;
 ! function doStuff() {
 	let done = 0;
 	function doRemove() {
-		document.querySelectorAll('iframe:not(.cp_embed_iframe )')
-			.forEach(ifm => { ifm.remove(); done++ });
-		document.querySelectorAll('ins.adsbygoogle, ins.adsbyfalcon, #MediaCrazy-AD2, #ats-insert_video-0-wrapper')
-			.forEach(ifm => { ifm.remove(); done++ });
-		document.querySelectorAll('script[src^="//falcon-asset.pixfs.net/js"]')
-			.forEach(ifm => { ifm.remove(); done++ });
-		console.log(`Middle ${multi} Done count: ${done}`)
+		[	 'iframe:not(.cp_embed_iframe)'
+			,'ins.adsbygoogle, ins.adsbyfalcon, #MediaCrazy-AD2, #ats-insert_video-0-wrapper'
+			,'script[src^="//falcon-asset.pixfs.net/js"]'
+		].forEach( sTxt => {
+			document.querySelectorAll(sTxt)
+				.forEach(ifm => { ifm.remove(); done++ });
+		})
+		console.log(`Middle ${multi} removed count: ${done}`)
 	}
 
 	doRemove()
 	if (done != 0) {
-		tmoid = setTimeout(doStuff, 500);
+		tmoid = setTimeout(doStuff, 300);
 		multi = 10;
 	} else if (multi > 0) {
 		multi--;
@@ -21,16 +22,16 @@ var tmoid=null, multi = 10;
 	} else {
 		done = 0;
 		tmoid && clearTimeout(tmoid);
-		let sTxt=[
-			 '#pixnet_pc_article_bottom_1',
-			 '#pixnet-ad-content-left-right-wrapper'
-		].join(', ')
-		document.querySelectorAll(sTxt).forEach( (elm, idx, ary) => {
-			elm.style.display = ''
-			elm.setAttribute('style', 'display: none !important;')
-			done++
+		[	 '#pixnet_pc_article_bottom_1'
+			,'#pixnet-ad-content-left-right-wrapper'
+		].forEach( sTxt => {
+			document.querySelectorAll(sTxt).forEach( (elm, idx, ary) => {
+				elm.style.display = ''
+				elm.setAttribute('style', 'display: none !important;')
+				done++
+			})
 		})
-		console.log('Last Done count:'+done)
+		console.log(`Hided count: ${done}`)
 	}
 }();
 
